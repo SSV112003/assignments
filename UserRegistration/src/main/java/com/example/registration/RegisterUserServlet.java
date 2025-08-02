@@ -2,6 +2,7 @@ package com.example.registration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,14 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.sendRedirect("register.jsp");
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // Set response content type
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        // Get form data
         String fullname = request.getParameter("fullname");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -29,7 +34,6 @@ public class RegisterUserServlet extends HttpServlet {
         String married = request.getParameter("married") != null ? "Yes" : "No";
         String note = request.getParameter("note");
 
-        // Print the submitted data
         out.println("<html><body>");
         out.println("<h2>Registration Successful</h2>");
         out.println("<p><strong>Full Name:</strong> " + fullname + "</p>");
@@ -42,3 +46,4 @@ public class RegisterUserServlet extends HttpServlet {
         out.println("</body></html>");
     }
 }
+
