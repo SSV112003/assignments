@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Income Tax Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      max-width: 400px;
+      background: #fff;
+      padding: 1.5rem;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.2rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.6rem;
+      background: #0078d4;
+      color: white;
+      border: none;
+      width: 100%;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    .result {
+      max-width: 400px;
+      margin: 1.5rem auto;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+    .result p {
+      margin: 0.3rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Income Tax Calculator</h1>
+
+  <form id="taxForm">
+    <label>Full Name:</label>
+    <input type="text" id="fullName" required />
+
+    <label>PAN Number:</label>
+    <input type="text" id="panNumber" required maxlength="10" />
+
+    <label>Date of Birth:</label>
+    <input type="date" id="dob" required />
+
+    <label>Annual Income (₹):</label>
+    <input type="number" id="income" required min="0" />
+
+    <button type="submit">Calculate Tax</button>
+  </form>
+
+  <div id="output" class="result" style="display:none;"></div>
+
+  <script>
+    document.getElementById("taxForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // Stop form from refreshing the page
+
+      // Get input values
+      let name = document.getElementById("fullName").value.trim();
+      let pan = document.getElementById("panNumber").value.trim().toUpperCase();
+      let dob = document.getElementById("dob").value;
+      let income = parseFloat(document.getElementById("income").value);
+
+      // Validate PAN format (10 chars, all uppercase letters/numbers)
+      if (pan.length !== 10) {
+        alert("PAN number must be exactly 10 characters.");
+        return;
+      }
+
+      // Calculate age using Date object
+      let birthDate = new Date(dob);
+      let today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      let monthDiff = today.getMonth() - birthDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      // Tax calculation
+      let tax = 0;
+      if (income <= 250000) {
+        tax = 0;
+      } else if (income <= 500000) {
+        tax = income * 0.05;
+      } else if (income <= 1000000) {
+        tax = income * 0.20;
+      } else {
+        tax = income * 0.30;
+      }
+
+      // Round to nearest rupee
+      tax = Math.round(tax);
+
+      // Display result
+      let outputDiv = document.getElementById("output");
+      outputDiv.style.display = "block";
+      outputDiv.innerHTML = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>PAN:</strong> ${pan}</p>
+        <p><strong>Age:</strong> ${age} years</p>
+        <p><strong>Annual Income:</strong> ₹${income.toLocaleString()}</p>
+        <p><strong>Calculated Tax:</strong> ₹${tax.toLocaleString()}</p>
+      `;
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Customers Management</title>
+</head>
+<body>
+    <h1>Bank Customers – Dynamic Array Demo</h1>
+    <div id="output"></div>
+
+    <script>
+        // Helper function to print to the webpage
+        function print(message) {
+            document.getElementById("output").innerHTML += message + "<br>";
+        }
+
+        // 1. Ask how many customers to register
+        let count = parseInt(prompt("How many customers to register?"));
+
+        // 2. Dynamic array literal to store names
+        let customers = [];
+        for (let i = 0; i < count; i++) {
+            let name = prompt(`Enter name for customer ${i + 1}:`);
+            customers.push(name);
+        }
+
+        // Show original customers
+        print("Original Customers: " + customers.join(", "));
+
+        // 3. Display customer names using for...of loop
+        print("<b>Customers using for...of:</b>");
+        for (let name of customers) {
+            print(name);
+        }
+
+        // 4. Display customer IDs (indexes) using for...in loop
+        print("<b>Customer IDs using for...in:</b>");
+        for (let index in customers) {
+            print(index);
+        }
+
+        // 5. Add a new customer at the end using push()
+        customers.push("Anita");
+        print("After push('Anita'): " + customers.join(", "));
+
+        // 6. Remove the last customer using pop()
+        customers.pop();
+        print("After pop(): " + customers.join(", "));
+
+        // 7. Insert a new customer at a specific position using splice()
+        customers.splice(1, 0, "Vikram");
+        print("After insert 'Vikram' at position 1: " + customers.join(", "));
+
+        // 8. Delete a customer at a specific position using splice() again
+        customers.splice(2, 1);
+        print("After delete at position 2: " + customers.join(", "));
+
+        // 9. Display the final customer list
+        print("<b>Final Customers:</b> " + customers.join(", "));
+    </script>
+</body>
+</html>

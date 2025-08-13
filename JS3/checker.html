@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equality & Inequality Checker</title>
+</head>
+<body>
+  <h1>Equality & Inequality Checker</h1>
+
+    <script>
+        // Asking the user for two values
+        let firstValue = prompt("Enter the first value:");
+        let secondValue = prompt("Enter the second value:");
+
+        // Checking their types
+        console.log(`First Value: ${firstValue} (${typeof firstValue})`);
+        console.log(`Second Value: ${secondValue} (${typeof secondValue})`);
+
+        // Converting the second value to a Number (for demo purpose)
+        let secondValueNumber = Number(secondValue);
+
+        // Equality (==) → compares values, ignores type
+        console.log(`Using == : ${firstValue == secondValueNumber} → Equality ignores type`);
+
+        // Strict Equality (===) → compares values and types
+        console.log(`Using === : ${firstValue === secondValueNumber} → Strict equality checks type too`);
+
+        // Inequality (!=) → true if values are different, ignores type
+        console.log(`Using != : ${firstValue != secondValueNumber} → Inequality ignores type`);
+
+        // Strict Inequality (!==) → true if values OR types are different
+        console.log(`Using !== : ${firstValue !== secondValueNumber} → Strict inequality checks type and value`);
+    </script>
+</body>
+</html>

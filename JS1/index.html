@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JS Alert/Confirm/Prompt – Quiz</title>
+
+  <style>
+    
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f7f7fb; }
+    main { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,.08); text-align: center; max-width: 640px; }
+    h1 { margin: 0 0 .5rem; font-size: 1.4rem; }
+    p { margin: 0 0 1rem; color: #444; }
+    button { padding: .7rem 1rem; font-weight: 600; border-radius: .8rem; border: 1px solid #ddd; background: #f3f3f7; cursor: pointer; }
+    button:hover { filter: brightness(0.98); }
+  </style>
+
+
+  <script defer>
+    // Wrap the quiz in a function so we can run it on load and when clicking "Play Again"
+    function startQuiz() {
+      // 1) Welcome the user
+      alert("Welcome to the JavaScript Mini Quiz!");
+
+      // 2) Ask for the user's name
+      const name = prompt("What is your name?");
+      if (name === null) {
+        // User pressed Cancel in the name prompt
+        alert("No worries! You cancelled. Reload the page or click the button to try again.");
+        return; // Stop the quiz here
+      }
+
+      // 3) Ask if they're ready
+      const ready = confirm(`Hi ${name.trim() || "there"}! Are you ready for the quiz?`);
+      if (!ready) {
+        alert("Okay, come back again when you're ready.");
+        return;
+      }
+
+      // 4) Ask a MCQ (using a prompt)
+      const question =
+        "Which keyword declares a constant variable in JavaScript?\n\n" +
+        "A) var\n" +
+        "B) let\n" +
+        "C) const\n\n" +
+        "Type A, B, or C:";
+      const userInput = prompt(question);
+
+      if (userInput === null) {
+        alert("You cancelled the question. Quiz ended.");
+        return;
+      }
+
+      const answer = userInput.trim().toUpperCase(); 
+
+      // Validate and check the answer
+      const validChoices = ["A", "B", "C"];
+      if (!validChoices.includes(answer)) {
+        alert("That's not a valid option. Please type A, B, or C next time.");
+        return;
+      }
+
+      const isCorrect = (answer === "C");
+
+      // 5) Show result with an alert
+      if (isCorrect) {
+        alert(`Correct!  Great job, ${name.trim() || "friend"}!`);
+      } else {
+        alert("Oops, that's not right. The correct answer is C) const.");
+      }
+    }
+
+    // Run once when the page is ready, and wire up the button to replay
+    window.addEventListener("DOMContentLoaded", () => {
+      startQuiz();
+      const btn = document.getElementById("play-again");
+      btn.addEventListener("click", startQuiz);
+    });
+  </script>
+</head>
+
+<body>
+  <main>
+    <h1>JavaScript Quiz (alert • confirm • prompt)</h1>
+    <p>Reload the page or use the button to try again.</p>
+    <button id="play-again" type="button">Play Again</button>
+    <noscript>You need to enable JavaScript to run this quiz.</noscript>
+  </main>
+</body>
+</html>
