@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Website Feedback Survey</title>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Website Feedback Survey</h1>
+        <p>We value your opinion. Please take a minute to share your thoughts.</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#">Home</a> |
+        <a href="#">About</a> |
+        <a href="#">Contact</a>
+    </nav>
+
+    <main>
+        <!-- Feedback Form -->
+        <form action="#" method="POST">
+
+            <!-- Section 1: Personal Info -->
+            <section>
+                <h2>Personal Information</h2>
+
+                <label for="name">Full Name *</label><br>
+                <input type="text" id="name" name="fullname" required><br><br>
+
+                <label for="email">Email Address *</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="age">Age</label><br>
+                <input type="number" id="age" name="age" min="10" max="100"><br><br>
+            </section>
+
+            <!-- Section 2: Website Rating -->
+            <section>
+                <h2>Website Rating</h2>
+
+                <label for="design">Design (1–10):</label><br>
+                <input type="range" id="design" name="design" min="1" max="10"><br><br>
+
+                <p>Content Quality:</p>
+                <input type="radio" id="excellent" name="content" value="Excellent">
+                <label for="excellent">Excellent</label>
+                <input type="radio" id="good" name="content" value="Good">
+                <label for="good">Good</label>
+                <input type="radio" id="average" name="content" value="Average">
+                <label for="average">Average</label>
+                <input type="radio" id="poor" name="content" value="Poor">
+                <label for="poor">Poor</label>
+                <br><br>
+
+                <label for="page">Most visited page:</label><br>
+                <select id="page" name="page">
+                    <option value="Home">Home</option>
+                    <option value="Blog">Blog</option>
+                    <option value="Products">Products</option>
+                    <option value="Contact">Contact</option>
+                </select>
+                <br><br>
+            </section>
+
+            <!-- Section 3: Suggestions -->
+            <section>
+                <h2>Suggestions</h2>
+                <textarea name="suggestions" placeholder="Write your suggestions here..."></textarea><br><br>
+
+                <input type="checkbox" id="agree" name="agree">
+                <label for="agree">I agree to be contacted regarding my feedback</label><br><br>
+
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </section>
+
+        </form>
+
+        <!-- Aside Section -->
+        <aside>
+            <h3>Why your feedback matters</h3>
+            <p>Your feedback helps us improve our website experience for everyone. Thank you!</p>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Website Survey</p>
+    </footer>
+
+</body>
+</html>
